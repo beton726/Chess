@@ -1,6 +1,7 @@
 package game.board;
 
-import game.base.BaseClass;
+import game.base.AbstractChess;
+import game.color.ColorBoard;
 import game.color.ColorPiece;
 import game.color.LookPiece;
 import game.figures.*;
@@ -12,12 +13,12 @@ public class ChessBoard {
     static final int x = 8;
     static final int y = 8;
 
-    public static String[] alphabet = new String[]{"a","b","c","d","e","f","g","h"};
-    List<BaseClass> whitePieceList = new ArrayList<>();
-    List<BaseClass> blackPieceList = new ArrayList<>();
-    List<BaseClass> freeBoardList = new ArrayList<>();
+    public static String[] alphabet = new String[]{"a", "b", "c", "d", "e", "f", "g", "h"};
+    List<AbstractChess> whitePieceList = new ArrayList<>();
+    List<AbstractChess> blackPieceList = new ArrayList<>();
+    List<AbstractChess> freeBoardList = new ArrayList<>();
 
-    public static BaseClass[][] arrBoardTest = new BaseClass[x][y];
+    private final AbstractChess[][] arrBoard = new AbstractChess[x][y];
 
     private void initWhitePiece() {
         // Инициализация основных фигур.
@@ -79,42 +80,51 @@ public class ChessBoard {
         initBlackPiece();
         initFreeBoard();
 
-        for (BaseClass obj : whitePieceList) {
-            arrBoardTest[obj.x][obj.y] = obj;
+        for (AbstractChess obj : whitePieceList) {
+            arrBoard[obj.x][obj.y] = obj;
         }
-        for (BaseClass obj : blackPieceList) {
-            arrBoardTest[obj.x][obj.y] = obj;
+        for (AbstractChess obj : blackPieceList) {
+            arrBoard[obj.x][obj.y] = obj;
         }
-        for (BaseClass obj : freeBoardList) {
-            arrBoardTest[obj.x][obj.y] = obj;
+        for (AbstractChess obj : freeBoardList) {
+            arrBoard[obj.x][obj.y] = obj;
         }
-        // Привязать алгебраическую нотацию
-        algebraicNotation();
+
+        algebraicNotationAndPaintEmptySquares();
+
     }
 
-    public static void showBoard() {
+    public void showBoard() {
         System.out.println("-------------");
-        for (int i = 0; i < arrBoardTest.length; i++) {
-            for (int j = 0; j < arrBoardTest[0].length; j++) {
-                System.out.print(arrBoardTest[i][j].getLookPiece() + " ");
+        for (AbstractChess[] chesses : arrBoard) {
+            for (int j = 0; j < arrBoard[0].length; j++) {
+                System.out.print(chesses[j].getLookPiece() + " ");
             }
             System.out.println();
         }
         System.out.println("-------------");
-//        for (int i = 0; i < arrBoardTest.length; i++) {
-//            for (int j = 0; j < arrBoardTest[0].length; j++) {
-//                System.out.print(arrBoardTest[i][j].algebraicNotation + " ");
+//        for (AbstractChess[] abstractChesses : arrBoard) {
+//            for (int j = 0; j < arrBoard[0].length; j++) {
+//                System.out.print(abstractChesses[j].algebraicNotation + " ");
 //            }
 //            System.out.println();
 //        }
     }
 
-    public static void algebraicNotation() {
-        for (int i = 0; i < arrBoardTest.length; i++) {
-            for (int j = 0; j < arrBoardTest[0].length; j++) {
-                arrBoardTest[i][j].algebraicNotation = alphabet[j] + (x - i);
+    public void algebraicNotationAndPaintEmptySquares() {
+        for (int i = 0; i < arrBoard.length; i++) {
+            for (int j = 0; j < arrBoard[0].length; j++) {
+                arrBoard[i][j].algebraicNotation = alphabet[j] + (x - i);
+                if ((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1))
+                    arrBoard[i][j].colorBoard = ColorBoard.WHITE;
+                else
+                    arrBoard[i][j].colorBoard = ColorBoard.BLACK;
             }
         }
+    }
+
+    public AbstractChess[][] getArrBoard() {
+        return arrBoard;
     }
 
 }

@@ -1,9 +1,9 @@
 package game.figures;
 
-import game.base.BaseClass;
+import game.base.AbstractChess;
 import game.color.ColorPiece;
 
-public class FreeBoard extends BaseClass {
+public class FreeBoard extends AbstractChess {
     public FreeBoard(int x, int y, ColorPiece colorPiece, Character lookPiece, boolean flagPiece) {
         super(x, y, colorPiece, lookPiece, flagPiece);
     }
@@ -14,7 +14,7 @@ public class FreeBoard extends BaseClass {
     }
 
     @Override
-    public BaseClass clone() {
+    public AbstractChess clone() {
         return new FreeBoard(x, y, colorPiece, lookPiece, flagPiece);
     }
 }

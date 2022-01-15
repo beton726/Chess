@@ -1,65 +1,66 @@
 package game.moves;
 
-import game.base.BaseClass;
 import game.board.ChessBoard;
 import game.color.ColorBoard;
 import game.color.LookPiece;
 import game.figures.FreeBoard;
 
-import static game.board.ChessBoard.*;
-
 public class MovePiece {
 
-    public static void move(String move) {
-        // pe2–e4
-        char namePiece = move.charAt(0);
+    public void move(ChessBoard chessBoard, String move) {
         String from = move.substring(1, 3);
         String in = move.substring(4, 6);
+        switch (move.charAt(0)) {
+            case 'K' :
+                break;
+            case 'Q' :
+                break;
+            case 'R' :
+                break;
+            case 'B' :
+                break;
+            case 'N' :
+                break;
+            case 'p' :
+                movePawn(chessBoard, from, in);
 
-//        System.out.println(namePiece);
-//        System.out.println(from);
-//        System.out.println(in);
 
-        // Программа ищет объект на клетке e2 и изменяет его координаты на e4.
-
-        // 1) Поиск поля e2
-        // 2) Получить координаты x,y данного объекта
-        // 3) Вытащить его из массива в переменную
-        // 4) Закрасить это поле необходимым квадратом
-        // 5) Поиск поля e4
-        // 6) Записать объект из переменной в поле e4
+                break;
+        }
 
 
-        searchFromIn(from, in);
-        ChessBoard.algebraicNotation();
+
+        searchFromIn(chessBoard, from, in);
+        chessBoard.algebraicNotationAndPaintEmptySquares();
+    }
+
+    private void movePawn(ChessBoard chessBoard, String from, String in) {
+
+
 
     }
 
-    private static void movePawn() {
-
-    }
-
-    private static void searchFromIn(String from, String in) {
+    private void searchFromIn(ChessBoard chessBoard, String from, String in) {
         outer_1:
-        for (int i = 0; i < arrBoardTest.length; i++) {
-            for (int j = 0; j < arrBoardTest[0].length; j++) {
+        for (int i = 0; i < chessBoard.getArrBoard().length; i++) {
+            for (int j = 0; j < chessBoard.getArrBoard()[0].length; j++) {
 
-                if (arrBoardTest[i][j].algebraicNotation.equals(from)) {
+                if (chessBoard.getArrBoard()[i][j].algebraicNotation.equals(from)) {
                     outer_2:
-                    for (int k = 0; k < arrBoardTest.length; k++) {
-                        for (int m = 0; m < arrBoardTest[0].length; m++) {
-                            if (arrBoardTest[k][m].algebraicNotation.equals(in)) {
-                                arrBoardTest[k][m] = arrBoardTest[i][j].clone();
+                    for (int k = 0; k < chessBoard.getArrBoard().length; k++) {
+                        for (int m = 0; m < chessBoard.getArrBoard()[0].length; m++) {
+                            if (chessBoard.getArrBoard()[k][m].algebraicNotation.equals(in)) {
+                                chessBoard.getArrBoard()[k][m] = chessBoard.getArrBoard()[i][j].clone();
                                 break outer_2;
                             }
                         }
                     }
 
-                    if (arrBoardTest[i][j].colorBoard == ColorBoard.WHITE) {
-                        arrBoardTest[i][j] = new FreeBoard(i, j, null, LookPiece.FreeBoardWhite.getLook(), false);
+                    if (chessBoard.getArrBoard()[i][j].colorBoard == ColorBoard.WHITE) {
+                        chessBoard.getArrBoard()[i][j] = new FreeBoard(i, j, null, LookPiece.FreeBoardWhite.getLook(), false);
                         break outer_1;
-                    } else if (arrBoardTest[i][j].colorBoard == ColorBoard.BLACK) {
-                        arrBoardTest[i][j] = new FreeBoard(i, j, null, LookPiece.FreeBoardBlack.getLook(), false);
+                    } else if (chessBoard.getArrBoard()[i][j].colorBoard == ColorBoard.BLACK) {
+                        chessBoard.getArrBoard()[i][j] = new FreeBoard(i, j, null, LookPiece.FreeBoardBlack.getLook(), false);
                         break outer_1;
                     }
                 }

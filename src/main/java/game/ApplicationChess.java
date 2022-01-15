@@ -11,17 +11,30 @@ public class ApplicationChess {
         chessBoard.initAll();
         chessBoard.showBoard();
 
-        MovePiece.move("pe2–e4");
+        MovePiece movePiece = new MovePiece();
+        movePiece.move(chessBoard, "pe2–e4");
 
         chessBoard.showBoard();
 
-        MovePiece.move("pe4–e6");
+        movePiece.move(chessBoard, "pe4–e2");
 
         chessBoard.showBoard();
 
-        MovePiece.move("pa1–a8");
+        movePiece.move(chessBoard, "pe2–e4");
+        movePiece.move(chessBoard, "pe4–e2");
+        movePiece.move(chessBoard, "pe2–e4");
+
+        movePiece.move(chessBoard, "pe4–e3");
 
         chessBoard.showBoard();
+
+//        movePiece.move(chessBoard, "pe4–e6");
+//
+//        chessBoard.showBoard();
+//
+//        movePiece.move(chessBoard, "pc8–b4");
+//
+//        chessBoard.showBoard();
 
 //        while (true) {
 //            MovePiece.move("pe2–e4");
