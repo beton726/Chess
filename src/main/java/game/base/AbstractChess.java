@@ -21,6 +21,26 @@ public abstract class AbstractChess {
         this.flagPiece = flagPiece;
     }
 
+    public void setColorPiece(ColorPiece colorPiece) {
+        this.colorPiece = colorPiece;
+    }
+
+    public void setColorBoard(ColorBoard colorBoard) {
+        this.colorBoard = colorBoard;
+    }
+
+    public void setLookPiece(Character lookPiece) {
+        this.lookPiece = lookPiece;
+    }
+
+    public void setFlagPiece(boolean flagPiece) {
+        this.flagPiece = flagPiece;
+    }
+
+    public void setAlgebraicNotation(String algebraicNotation) {
+        this.algebraicNotation = algebraicNotation;
+    }
+
     public abstract Character getLookPiece();
 
     public abstract AbstractChess clone();

@@ -94,23 +94,6 @@ public class ChessBoard {
 
     }
 
-    public void showBoard() {
-        System.out.println("-------------");
-        for (AbstractChess[] chesses : arrBoard) {
-            for (int j = 0; j < arrBoard[0].length; j++) {
-                System.out.print(chesses[j].getLookPiece() + " ");
-            }
-            System.out.println();
-        }
-        System.out.println("-------------");
-//        for (AbstractChess[] abstractChesses : arrBoard) {
-//            for (int j = 0; j < arrBoard[0].length; j++) {
-//                System.out.print(abstractChesses[j].algebraicNotation + " ");
-//            }
-//            System.out.println();
-//        }
-    }
-
     public void algebraicNotationAndPaintEmptySquares() {
         for (int i = 0; i < arrBoard.length; i++) {
             for (int j = 0; j < arrBoard[0].length; j++) {

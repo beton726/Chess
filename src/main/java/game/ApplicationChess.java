@@ -1,6 +1,7 @@
 package game;
 
 import game.board.ChessBoard;
+import game.helper.ConsoleHelper;
 import game.moves.MovePiece;
 
 public class ApplicationChess {
@@ -9,24 +10,28 @@ public class ApplicationChess {
 
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.initAll();
-        chessBoard.showBoard();
+
+        ConsoleHelper.showBoard(chessBoard);
 
         MovePiece movePiece = new MovePiece();
         movePiece.move(chessBoard, "pe2–e4");
 
-        chessBoard.showBoard();
+        ConsoleHelper.showBoard(chessBoard);
 
-        movePiece.move(chessBoard, "pe4–e2");
 
-        chessBoard.showBoard();
-
-        movePiece.move(chessBoard, "pe2–e4");
-        movePiece.move(chessBoard, "pe4–e2");
-        movePiece.move(chessBoard, "pe2–e4");
-
-        movePiece.move(chessBoard, "pe4–e3");
-
-        chessBoard.showBoard();
+//        chessBoard.showBoard();
+//
+//        movePiece.move(chessBoard, "pe4–e2");
+//
+//        chessBoard.showBoard();
+//
+//        movePiece.move(chessBoard, "pe2–e4");
+//        movePiece.move(chessBoard, "pe4–e2");
+//        movePiece.move(chessBoard, "pe2–e4");
+//
+//        movePiece.move(chessBoard, "pe4–e3");
+//
+//        chessBoard.showBoard();
 
 //        movePiece.move(chessBoard, "pe4–e6");
 //
