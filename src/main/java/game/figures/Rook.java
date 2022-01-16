@@ -4,17 +4,12 @@ import game.base.AbstractChess;
 import game.color.ColorPiece;
 
 public class Rook extends AbstractChess {
-    public Rook(int x, int y, ColorPiece colorPiece, Character lookPiece, boolean flagPiece) {
-        super(x, y, colorPiece, lookPiece, flagPiece);
-    }
-
-    @Override
-    public Character getLookPiece() {
-        return lookPiece;
+    public Rook(String algebraicNotation, ColorPiece colorPiece, Character lookPiece, boolean flagPiece) {
+        super(algebraicNotation, colorPiece, lookPiece, flagPiece);
     }
 
     @Override
     public AbstractChess clone() {
-        return new Rook(x, y, colorPiece, lookPiece, flagPiece);
+        return new Rook(this.getAlgebraicNotation(), this.getColorPiece(), this.getLookPiece(), this.isFlagPiece());
     }
 }

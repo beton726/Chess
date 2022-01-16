@@ -14,6 +14,14 @@ public class ConsoleHelper {
 
     public static void showBoard(ChessBoard chessBoard) {
         AbstractChess[][] arrBoard = chessBoard.getArrBoard();
+        showLookPiece(arrBoard);
+    }
+
+    public static void showBoard(AbstractChess[][] arrBoard) {
+        showLookPiece(arrBoard);
+    }
+
+    private static void showLookPiece(AbstractChess[][] arrBoard) {
         for (AbstractChess[] chess : arrBoard) {
             for (int j = 0; j < arrBoard[0].length; j++) {
                 System.out.print(chess[j].getLookPiece() + " ");
@@ -25,9 +33,17 @@ public class ConsoleHelper {
 
     public static void showAlgebraicNotation(ChessBoard chessBoard) {
         AbstractChess[][] arrBoard = chessBoard.getArrBoard();
+        showAlgNot(arrBoard);
+    }
+
+    public static void showAlgebraicNotation(AbstractChess[][] arrBoard) {
+        showAlgNot(arrBoard);
+    }
+
+    private static void showAlgNot(AbstractChess[][] arrBoard) {
         for (AbstractChess[] chess : arrBoard) {
             for (int j = 0; j < arrBoard[0].length; j++) {
-                System.out.print(chess[j].algebraicNotation + " ");
+                System.out.print(chess[j].getAlgebraicNotation() + " ");
             }
             System.out.println();
         }
@@ -40,7 +56,7 @@ public class ConsoleHelper {
         int y = 8;
 
         String[][] arrBoardTestString = new String[x][y];
-        String[] alphabet = new String[]{"a","b","c","d","e","f","g","h"};
+        String[] alphabet = new String[]{"a", "b", "c", "d", "e", "f", "g", "h"};
         for (int i = 0; i < arrBoardTestString.length; i++) {
             for (int j = 0; j < arrBoardTestString[0].length; j++) {
                 arrBoardTestString[i][j] = alphabet[j] + (x - i);

@@ -1,5 +1,6 @@
 package game.moves;
 
+import game.base.AbstractChess;
 import game.board.ChessBoard;
 import game.color.ColorBoard;
 import game.color.LookPiece;
@@ -11,17 +12,17 @@ public class MovePiece {
         String from = move.substring(1, 3);
         String in = move.substring(4, 6);
         switch (move.charAt(0)) {
-            case 'K' :
+            case 'K':
                 break;
-            case 'Q' :
+            case 'Q':
                 break;
-            case 'R' :
+            case 'R':
                 break;
-            case 'B' :
+            case 'B':
                 break;
-            case 'N' :
+            case 'N':
                 break;
-            case 'p' :
+            case 'p':
                 movePawn(chessBoard, from, in);
 
 
@@ -29,38 +30,69 @@ public class MovePiece {
         }
 
 
-
         searchFromIn(chessBoard, from, in);
         chessBoard.algebraicNotationAndPaintEmptySquares();
     }
 
-    private void movePawn(ChessBoard chessBoard, String from, String in) {
-
+    private void moveCalculation(ChessBoard chessBoard) {
 
 
     }
 
-    private void searchFromIn(ChessBoard chessBoard, String from, String in) {
-        outer_1:
-        for (int i = 0; i < chessBoard.getArrBoard().length; i++) {
-            for (int j = 0; j < chessBoard.getArrBoard()[0].length; j++) {
+    private void movePawn(ChessBoard chessBoard, String from, String in) {
 
-                if (chessBoard.getArrBoard()[i][j].algebraicNotation.equals(from)) {
+    }
+
+    private void searchFromIn(ChessBoard chessBoard, String from, String in) {
+
+        AbstractChess[][] arrBoard = chessBoard.getArrBoard();
+
+//        for (AbstractChess[] row : arrBoard) {
+//            for (AbstractChess element : row) {
+//
+//                if(element.getAlgebraicNotation().equals(from)) {
+//
+//
+//                    for (AbstractChess[] row_in : arrBoard) {
+//                        for (AbstractChess element_in : row_in) {
+//
+//                            if(element_in.getAlgebraicNotation().equals(in)) {
+//
+//
+//
+//                                element_in.clone();
+//                            }
+//
+//                        }
+//                    }
+//
+//
+//                }
+//
+//            }
+//        }
+
+
+        outer_1:
+        for (int i = 0; i < arrBoard.length; i++) {
+            for (int j = 0; j < arrBoard[0].length; j++) {
+
+                if (arrBoard[i][j].getAlgebraicNotation().equals(from)) {
                     outer_2:
-                    for (int k = 0; k < chessBoard.getArrBoard().length; k++) {
-                        for (int m = 0; m < chessBoard.getArrBoard()[0].length; m++) {
-                            if (chessBoard.getArrBoard()[k][m].algebraicNotation.equals(in)) {
-                                chessBoard.getArrBoard()[k][m] = chessBoard.getArrBoard()[i][j].clone();
+                    for (int k = 0; k < arrBoard.length; k++) {
+                        for (int m = 0; m < arrBoard[0].length; m++) {
+                            if (arrBoard[k][m].getAlgebraicNotation().equals(in)) {
+                                arrBoard[k][m] = arrBoard[i][j].clone();
                                 break outer_2;
                             }
                         }
                     }
 
-                    if (chessBoard.getArrBoard()[i][j].colorBoard == ColorBoard.WHITE) {
-                        chessBoard.getArrBoard()[i][j] = new FreeBoard(i, j, null, LookPiece.FreeBoardWhite.getLook(), false);
+                    if (arrBoard[i][j].getColorBoard() == ColorBoard.WHITE) {
+                        arrBoard[i][j] = new FreeBoard("",null, LookPiece.FreeBoardWhite.getLook(),false);
                         break outer_1;
-                    } else if (chessBoard.getArrBoard()[i][j].colorBoard == ColorBoard.BLACK) {
-                        chessBoard.getArrBoard()[i][j] = new FreeBoard(i, j, null, LookPiece.FreeBoardBlack.getLook(), false);
+                    } else if (arrBoard[i][j].getColorBoard() == ColorBoard.BLACK) {
+                        arrBoard[i][j] = new FreeBoard("",null, LookPiece.FreeBoardBlack.getLook(),false);
                         break outer_1;
                     }
                 }

@@ -4,17 +4,12 @@ import game.base.AbstractChess;
 import game.color.ColorPiece;
 
 public class King extends AbstractChess {
-    public King(int x, int y, ColorPiece colorPiece, Character lookPiece, boolean flagPiece) {
-        super(x, y, colorPiece, lookPiece, flagPiece);
-    }
-
-    @Override
-    public Character getLookPiece() {
-        return lookPiece;
+    public King(String algebraicNotation, ColorPiece colorPiece, Character lookPiece, boolean flagPiece) {
+        super(algebraicNotation, colorPiece, lookPiece, flagPiece);
     }
 
     @Override
     public AbstractChess clone() {
-        return new King(x, y, colorPiece, lookPiece, flagPiece);
+        return new King(this.getAlgebraicNotation(), this.getColorPiece(), this.getLookPiece(), this.isFlagPiece());
     }
 }

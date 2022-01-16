@@ -12,6 +12,7 @@ public class ApplicationChess {
         chessBoard.initAll();
 
         ConsoleHelper.showBoard(chessBoard);
+        ConsoleHelper.showAlgebraicNotation(chessBoard);
 
         MovePiece movePiece = new MovePiece();
         movePiece.move(chessBoard, "pe2–e4");
